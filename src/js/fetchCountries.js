@@ -2,21 +2,48 @@ import countriesCardTpl from '../templates/countries-card.hbs';
 import debounce from 'lodash.debounce';
 import API from './api-service';
 import getRefs from './get-refs';
+import '@pnotify/core/dist/BrightTheme.css';
+import pnotifyInfo from './pnotify';
+import pnotifyError from './pnotify';
 
-const refs = getRefs();
+const { cardCountries, searchCountries } = getRefs();
 
 function onSearch(evt) {
   searchCountries.innerHTML = '';
   const searchQuery = evt.target.value;
-}
 
-API.fetchCountry(searchQuery)
-  .then(renderCountryCard)
-  .catch(error => console.log(error));
+  API.fetchCountry(searchQuery)
+    .then(country => {
+      if (country.length <= 2 && country.length <= 10) {
+        renderCountryCard(country);
+        return;
+      }
+      if (country.length > 10) {
+        pnotifyInfo();
+        return;
+      }
+    })
+    .catch(() => {
+      searchCountries.innerHTML = '';
+      pnotifyError();
+    });
+}
 
 function renderCountryCard(country) {
   const markup = countriesCardTpl(country);
-  refs.cardCountries.innerHTML = markup;
+  cardCountries.innerHTML = markup;
 }
 
-input.addEventListener('input', debounce(onSearch, 500));
+//function callCountry(country) {
+// if (country.length > 10) {
+//   pnotifyInfo();
+//   return;
+// }
+//  if (country.length <= 2 && country.length <= 10) {
+//   renderCountryCard(country);
+//   return;
+// }
+// renderCountryCard(country);
+//}
+
+searchCountries.addEventListener('input', debounce(onSearch, 500));
