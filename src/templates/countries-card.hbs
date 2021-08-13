@@ -1,11 +1,10 @@
 {{#each this}}
 
+  <h1 class='cart-title'>{{name}}</h1>
   <div class='card'>
-    <div class='card-img'>
-      <img src='{{flag}}' alt='{{name}}' width='340px' />
-    </div>
+
     <div class='card-body'>
-      <h1 class='cart-title'>{{name}}</h1>
+
       <p class='card-text'>Capital: {{capital}}</p>
       <p class='card-text'>Population: {{population}}</p>
       <p class='card-text'>Languages:</p>
@@ -17,5 +16,9 @@
         {{/each}}
       </ul>
     </div>
+    <div class='card-img'>
+      <img src='{{flag}}' alt='{{name}}' />
+    </div>
+
   </div>
 {{/each}}
