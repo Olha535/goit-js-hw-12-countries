@@ -11,7 +11,7 @@ import { pnotifyInfo, pnotifyError, pnotifyNotice } from './pnotify';
 const { cardCountries, searchCountries } = getRefs();
 
 function onSearch(evt) {
-  searchCountries.innerHTML = '';
+  cardCountries.innerHTML = '';
   evt.preventDefault();
   const searchQuery = evt.target.value;
 
