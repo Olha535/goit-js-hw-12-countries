@@ -30,9 +30,8 @@ function onSearch(evt) {
       }
       renderCountryCard(country);
     })
-    .catch(() => {
-      searchCountries.innerHTML = '';
-      pnotifyError();
+    .catch(Error => {
+      Error.pnotifyError();
     });
 }
 
