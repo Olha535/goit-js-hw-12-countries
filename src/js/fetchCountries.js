@@ -16,19 +16,19 @@ function onSearch(evt) {
   const searchQuery = evt.target.value;
 
   API.fetchCountry(searchQuery)
-    //.then(resp => (resp.ok ? resp.json() : Promise.reject('is not ok: ' + resp.status)))
+    // .then(resp => (resp.ok ? resp.json() : Promise.reject('is not ok: ' + resp.status)))
     //.catch(err => {
     // console.warn(err);
     //})
-    .then(resp => {
-      if (!resp.ok) {
-        throw Error(`is not ok: ` + resp.status);
-      }
-      return resp.json();
-    })
-    .catch(err => {
-      console.warn(err);
-    })
+    //.then(resp => {
+    //  if (!resp.ok) {
+    //   throw Error(`is not ok: ` + resp.status);
+    // }
+    // return resp.json();
+    // })
+    // .catch(err => {
+    //  console.warn(err);
+    // })
     .then(country => {
       if (country.length > 10) {
         pnotifyInfo();
@@ -37,16 +37,16 @@ function onSearch(evt) {
 
       if (country.length >= 2 && country.length <= 10) {
         renderCountryList(country);
+
         return;
       }
+      renderCountryCard(country);
       if (country.status === 404) {
         pnotifyNotice();
         return;
       }
     })
     .catch(onFetchError);
-  //searchCountries.innerHTML = '';
-  //pnotifyError();
 }
 
 function onFetchError(error) {
