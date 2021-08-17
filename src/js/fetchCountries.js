@@ -37,7 +37,6 @@ function onSearch(evt) {
 
       if (country.length >= 2 && country.length <= 10) {
         renderCountryList(country);
-
         return;
       }
       renderCountryCard(country);
