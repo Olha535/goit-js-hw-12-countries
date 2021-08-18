@@ -14,6 +14,9 @@ function onSearch(evt) {
   cardCountries.innerHTML = '';
   evt.preventDefault();
   const searchQuery = evt.target.value;
+  if (evt.target.value.trim() === '') {
+    return;
+  }
 
   API.fetchCountry(searchQuery)
     // .then(resp => (resp.ok ? resp.json() : Promise.reject('is not ok: ' + resp.status)))
@@ -30,10 +33,6 @@ function onSearch(evt) {
     //  console.warn(err);
     // })
     .then(country => {
-      if (evt.target.value.trim() === '') {
-        return;
-      }
-
       if (country.length > 10) {
         pnotifyInfo();
         return;
