@@ -30,6 +30,10 @@ function onSearch(evt) {
     //  console.warn(err);
     // })
     .then(country => {
+      if (evt.target.value.trim() === '') {
+        return;
+      }
+
       if (country.length > 10) {
         pnotifyInfo();
         return;
