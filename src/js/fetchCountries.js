@@ -14,6 +14,7 @@ function onSearch(evt) {
   cardCountries.innerHTML = '';
   evt.preventDefault();
   const searchQuery = evt.target.value;
+
   if (evt.target.value.trim() === '') {
     return;
   }
