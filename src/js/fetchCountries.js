@@ -20,19 +20,6 @@ function onSearch(evt) {
   }
 
   API.fetchCountry(searchQuery)
-    // .then(resp => (resp.ok ? resp.json() : Promise.reject('is not ok: ' + resp.status)))
-    //.catch(err => {
-    // console.warn(err);
-    //})
-    //.then(resp => {
-    //  if (!resp.ok) {
-    //   throw Error(`is not ok: ` + resp.status);
-    // }
-    // return resp.json();
-    // })
-    // .catch(err => {
-    //  console.warn(err);
-    // })
     .then(country => {
       if (country.length > 10) {
         pnotifyInfo();
